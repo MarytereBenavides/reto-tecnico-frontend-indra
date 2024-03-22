@@ -1,4 +1,4 @@
-import { Footer, Header } from "@/components/organisms";
+import { Footer, Header } from "../organisms";
 
 interface BaseLayoutProps {
     children: React.ReactNode;

@@ -5,5 +5,6 @@ export const infoUser= async () =>{
         return data;
     }catch(error){
         console.log('Fetch Error', error);
+        throw error; 
     }
 }

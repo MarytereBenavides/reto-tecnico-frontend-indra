@@ -1,27 +1,30 @@
 
 import { BaseLayout, Button } from "../../components";
 import FamilyImg from '../../assets/img/family.png';
-import { useState } from "react";
-import { User } from "@/types";
+import { useEffect, useState } from "react";
+import { InfoUser, User } from "@/types";
 import { useNavigate  } from "react-router-dom";
 import { useInfoUser } from "../../hooks/useInfoUser";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+import { setDataUser } from "../../store/features/UserStore";
 function Home() {
     const navigate  = useNavigate ();
-    const {getInfoUser, errorInfoUser, isInfoUserLoading, dataInfoUser, setDataInfoUser} = useInfoUser();
+    const dispatch = useDispatch();
+    const {getInfoUser, errorInfoUser, isInfoUserLoading, dataInfoUser} = useInfoUser();
     const [dniError, setDniError] = useState(false);
     const [ceError, setCeError] = useState(false);
     const [cellphoneError, setCellphoneError] = useState(false);
     const [privacyError, setPrivacyError] = useState(false);
     const [comunicationError, setComunicationError] = useState(false);
-    const [dataUser, setDataUser] = useState<User>({
+    let [dataCurrentUser, setDataCurrentUser] = useState({
         document: '',
         documentNumber: '',
         cellphone: '',
         planUser: "",
         planType:"",
     });
-
-    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setDniError(false);
         setCellphoneError(false);
@@ -31,7 +34,7 @@ function Home() {
         const formData = new FormData(form);
         let hasError = false;
         const data = {
-            ...dataUser,
+            ...dataCurrentUser,
             document: formData.get('document') as string,
             documentNumber: formData.get('documentNumber') as string,
             cellphone: formData.get('cellphone') as string,
@@ -61,15 +64,25 @@ function Home() {
         if (hasError) {
             return;
         }
-        setDataUser(data);
-        getInfoUser();
-        if(!errorInfoUser){
-            setDataInfoUser({...dataInfoUser, ...dataUser});
-            navigate('/planes');
-        }else{
-            return;
-        }
+        try {
+            setDataCurrentUser(data);
+            await getInfoUser();
+          } catch (error) {
+            console.error('Error in getInfoUser:', error);
+          }
     };
+    useEffect(() => {
+        if (dataInfoUser) {
+            const allData = { ...dataInfoUser, ...dataCurrentUser };
+            dispatch(setDataUser(allData))
+        }
+    }, [dataInfoUser, dataCurrentUser, dispatch, navigate]);
+
+    useEffect(() => {
+        if (!isInfoUserLoading && !errorInfoUser && dataInfoUser.name) {
+            navigate('/planes');
+        }
+    }, [isInfoUserLoading, errorInfoUser, navigate, dataInfoUser.name]);
     return (
         <BaseLayout isHome>
             <section id="home" className="home">

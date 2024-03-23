@@ -17,7 +17,7 @@ function PlansList({ user, selectedUserPlan }: PlansListProps) {
     const [errorPlans, setErrorPlans] = useState(false);
     const navigate = useNavigate();
     const onSelectPlan = (plan:Plan) => {
-        const actualPrice = user.planUser==="Para alguien más" ? 0.95* (user.price) : user.price;
+        const actualPrice = user.planUser==="Para alguien más" ? 0.95* (plan.price) : plan.price;
         dispatch(setDataUser({ ...user, planType: plan.name, price: actualPrice}))
         navigate('/resumen');
     }

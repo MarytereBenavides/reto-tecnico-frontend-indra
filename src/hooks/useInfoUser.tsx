@@ -3,7 +3,7 @@ import { useCallback, useState } from "react";
 import { infoUser } from "../services/infoUser";
 
 export function useInfoUser(){
-    const[dataInfoUser, setDataInfoUser] = useState<InfoUser>({name:'',lastName:'',birthdate:'',document:'',documentNumber:'',cellphone:'',planUser:'',planType:''});
+    const[dataInfoUser, setDataInfoUser] = useState<InfoUser>({name:'',lastName:'',birthdate:''});
     const [isInfoUserLoading, setIsInfoUserLoading] = useState(false);
     const [errorInfoUser, setErrorInfoUser] = useState(false);
 

@@ -5,16 +5,17 @@ a:active {
     color: $color-primary;
 }
 
-p {
+p,
+h3 {
     margin: 0;
 }
 
 .baseLayout {
     min-height: 100vh;
 
-    // &--normal {
-    //     background-color: $color-primary;
-    // }
+    &--normal {
+        background-color: $color-background;
+    }
 
     // &--gradient {
     //     &--aqua {

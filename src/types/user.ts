@@ -2,11 +2,17 @@ export type User = {
     document: string;
     documentNumber: string;
     cellphone: string;
+}
+
+export type PlanSelected = {
     planUser: string;
     planType: string;
+    price: number;
 }
-export type InfoUser= User &{
+export type InfoUser= {
     name:string;
     lastName:string;
     birthdate:string;
 }
+
+export type SummaryDataUser = User & PlanSelected & InfoUser;

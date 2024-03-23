@@ -1,0 +1,46 @@
+.plans {
+    @extend .gridBaseLayout;
+    padding-top: 32px;
+    padding-bottom: 132px;
+
+    @media screen and (min-width: 1272px) {
+        padding-top: 40px;
+        padding-bottom: 156px;
+    }
+
+    &__about {
+        display: flex;
+        flex-direction: column;
+        grid-column-start: 4;
+        grid-column-end: span 6;
+    }
+
+    &__title {
+        font-family: "BRSonoma-Bold";
+        font-size: 28px;
+        line-height: 36px;
+        letter-spacing: -0.2px;
+        text-align: left;
+        color: $color-secondary;
+        margin-bottom: 8px;
+
+        @media screen and (min-width: 1272px) {
+            font-size: 40px;
+            line-height: 48px;
+            letter-spacing: -0.6px;
+            text-align: center;
+        }
+    }
+
+    &__description {
+        font-family: "BRSonoma-Regular";
+        font-size: 16px;
+        line-height: 28px;
+        text-align: left;
+        letter-spacing: 0.1px;
+
+        @media screen and (min-width: 1272px) {
+            text-align: center;
+        }
+    }
+}

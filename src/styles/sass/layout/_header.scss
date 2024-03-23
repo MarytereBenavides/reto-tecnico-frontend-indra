@@ -1,0 +1,54 @@
+.header {
+    @extend .gridBaseLayout;
+    padding-top: 14px;
+    padding-bottom: 14px;
+
+    &__logo {
+        grid-column-start: 1;
+
+        svg {
+            width: 65px;
+
+            @media screen and (min-width: 768px) {
+                width: 73px;
+            }
+        }
+    }
+
+    &__information {
+        grid-column-start: 3;
+        grid-column-end: span 2;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 16px;
+        color: $color-primary;
+
+        @media screen and (min-width: 768px) {
+            grid-column-start: 9;
+            grid-column-end: span 4;
+        }
+
+        &--message {
+            display: none;
+            font-family: "BRSonoma-SemiBold";
+            font-size: 12px;
+
+            @media screen and (min-width: 768px) {
+                display: block;
+            }
+        }
+    }
+
+    &__boxNumber {
+        display: flex;
+        font-family: "BRSonoma-Bold";
+        align-items: center;
+        gap: 8px;
+        color: $color-primary;
+
+        span {
+            font-size: 18px;
+        }
+    }
+}

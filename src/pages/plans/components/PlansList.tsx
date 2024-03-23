@@ -16,7 +16,6 @@ function PlansList({ user, selectedUserPlan }: PlansListProps) {
     const onSelectPlan = () => {
         navigate('/resumen');
     }
-    console.log(user, 'userUSer')
     const getPlans = useCallback(async () => {
         setIsInfoPlansLoading(true);
         setErrorPlans(false);

@@ -72,17 +72,18 @@ function Home() {
             await getInfoUser();
         } catch (error) {
             console.error('Error in getInfoUser:', error);
+            throw error;
         }
     };
     useEffect(() => {
         if (dataInfoUser) {
-            const allData = { ...dataInfoUser, ...dataCurrentUser };
+            const allData = { ...dataCurrentUser, ...dataInfoUser };
             dispatch(setDataUser(allData))
         }
     }, [dataInfoUser, dataCurrentUser, dispatch, navigate]);
 
     useEffect(() => {
-        if (!isInfoUserLoading && !errorInfoUser && dataInfoUser.name) {
+        if (!isInfoUserLoading && !errorInfoUser && dataInfoUser.name.length > 0) {
             navigate('/planes');
         }
     }, [isInfoUserLoading, errorInfoUser, navigate, dataInfoUser.name]);

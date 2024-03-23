@@ -8,6 +8,7 @@
 }
 
 .button {
+
     &--black {
         border-radius: 40px;
         padding: 16px 40px;
@@ -32,6 +33,11 @@
         padding: 14px 32px;
         background-color: $color-button-secondary;
         color: $color-white;
+        border: none;
+        font-family: "Lato";
+        font-size: 18px;
+        line-height: 20px;
+        letter-spacing: 0.4px;
 
     }
 }

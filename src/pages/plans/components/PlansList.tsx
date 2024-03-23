@@ -2,11 +2,12 @@ import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { plansUser } from "../../../services/infoUser";
 import { getYears } from "../../../utils";
+import { Button } from "../../../components";
 interface PlansListProps {
     user: any;
     selectedUserPlan: any;
 }
-function PlansList({user, selectedUserPlan}:PlansListProps) {
+function PlansList({ user, selectedUserPlan }: PlansListProps) {
     const [plans, setPlans] = useState([]);
     const [isInfoPlansLoading, setIsInfoPlansLoading] = useState(false);
     const [errorPlans, setErrorPlans] = useState(false);
@@ -14,7 +15,7 @@ function PlansList({user, selectedUserPlan}:PlansListProps) {
     const onSelectPlan = () => {
         navigate('/resumen');
     }
-    console.log(user,'userUSer')
+    console.log(user, 'userUSer')
     const getPlans = useCallback(async () => {
         setIsInfoPlansLoading(true);
         setErrorPlans(false);
@@ -37,18 +38,18 @@ function PlansList({user, selectedUserPlan}:PlansListProps) {
 
     const plansForAge = plans.filter((plan: any) => plan.age >= getYears(user.birthDay));
 
-  return (
-    <div className="plans__plans">
-                    {errorPlans && <p className="message_error">Ha ocurrido un error</p>}
-                    {isInfoPlansLoading && <p>Cargando...</p>}
-                    {!isInfoPlansLoading &&selectedUserPlan && plans.length>0 && (plansForAge.map((plan: any) => (
-                        <button key={plan.id} onClick={onSelectPlan}>
-                            <h2>{plan.name}</h2>
-                            <p>{plan.description}</p>
-
-                        </button>
-                    )))}
+    return (
+        <div className="plans__plans">
+            {errorPlans && <p className="message_error">Ha ocurrido un error</p>}
+            {isInfoPlansLoading && <p>Cargando...</p>}
+            {!isInfoPlansLoading && selectedUserPlan && plans.length > 0 && (plansForAge.map((plan: any) => (
+                <div key={plan.id} >
+                    <h2>{plan.name}</h2>
+                    <p>{plan.description}</p>
+                    <Button type="button" onClick={onSelectPlan} className="button--pink" text="Seleccionar Plan" />
                 </div>
-  );
+            )))}
+        </div>
+    );
 }
 export default PlansList;

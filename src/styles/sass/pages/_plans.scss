@@ -75,4 +75,14 @@
             grid-template-rows: 1fr;
         }
     }
+
+    &__plans {
+        grid-column-start: 1;
+        grid-column-end: span 4;
+
+        @media screen and (min-width: 1272px) {
+            grid-column-start: 2;
+            grid-column-end: span 10;
+        }
+    }
 }

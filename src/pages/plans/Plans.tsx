@@ -1,19 +1,41 @@
-import IconForMy from "../../assets/icons/IcProtectionLight.png";
-import IconForSomeoneElse from "../../assets/icons/IcAddUserLight.png";
-import { BaseLayout, ButtonCard } from "../../components";
+
+import { BaseLayout } from "../../components";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { plansUser } from "../../services/infoUser";
+import { PlansOptions } from "./components";
 
 function Plans() {
     const user = useSelector(
         (state: RootState) => state.userStore.dataUser,
     );
-    const [selectedPlan, setSelectedPlan] = useState('');
+    const [selectedUserPlan, setSelectedUserPlan] = useState('');
+    const [plans, setPlans] = useState([]);
+    const [isInfoPlansLoading, setIsInfoPlansLoading] = useState(false);
+    const [errorPlans, setErrorPlans] = useState(false);
 
-    const onSelectPlan = (e: any) => {
-        setSelectedPlan(e.target.value);
-    };
+    const getPlans = useCallback(async () => {
+        setIsInfoPlansLoading(true);
+        setErrorPlans(false);
+        try {
+            const response = await plansUser();
+            console.log(response, 'response');
+            setPlans(response.list);
+        } catch (error) {
+            setErrorPlans(true);
+            throw error;
+        } finally {
+            setIsInfoPlansLoading(false);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (user.name) {
+            getPlans();
+        }
+    }, [getPlans, user.name]);
+
     return (
         <BaseLayout>
             <section id="plans" className="plans">
@@ -21,15 +43,18 @@ function Plans() {
                     <h1 className="plans__title">{user.name} ¿Para quién deseas cotizar?</h1>
                     <p className="plans__description">Selecciona la opción que se ajuste más a tus necesidades.</p>
                 </div>
-                <div className="plans__options">
-                    <input type="radio" id="ForMe" name="plans" value="Para mí" onChange={onSelectPlan} />
-                    <label htmlFor="ForMe">
-                        <ButtonCard isSelect={selectedPlan === 'Para mí'} icon={IconForMy} title="Para mí" description="Cotiza tu seguro de salud y agrega familiares si así lo deseas." /></label>
-                    <label htmlFor="ForOther">  <input type="radio" id="ForOther" name="plans" value="Para alguien más" onChange={onSelectPlan} />
-                        <ButtonCard isSelect={selectedPlan === 'Para alguien más'} icon={IconForSomeoneElse} title="Para alguien más" description="Realiza una cotización para uno de tus familiares o cualquier persona." /></label>
-                </div>
 
+                <PlansOptions setSelectedUserPlan={setSelectedUserPlan} />
+                <div className="plans__plans">
+                    {selectedUserPlan.length>0 && plans.length>0 && (plans.map((plan: any) => (
+                        <div key={plan.id}>
+                            <h2>{plan.name}</h2>
+                            <p>{plan.description}</p>
+                        </div>
+                    )))}
+                </div>
             </section>
+
 
         </BaseLayout>
     )

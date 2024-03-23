@@ -1,10 +1,10 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
-import type { InfoUser } from '@/types';
+import type { SummaryDataUser } from '@/types';
 
 export type UserStoreState = {
-    dataUser: InfoUser;
+    dataUser: SummaryDataUser;
 };
 
 export const userSlice = createSlice({
@@ -13,7 +13,7 @@ export const userSlice = createSlice({
         dataUser: {},
     } as UserStoreState,
     reducers: {
-        setDataUser: (state:any, action: PayloadAction<InfoUser>) => {
+        setDataUser: (state:any, action: PayloadAction<SummaryDataUser>) => {
             state.dataUser = { ...action.payload };
         },
     },

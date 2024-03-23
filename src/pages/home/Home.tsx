@@ -22,6 +22,10 @@ function Home() {
         cellphone: '',
         planUser: "",
         planType: "",
+        price: 0,
+        name: '',
+        lastName: '',
+        birthDay: ''
     });
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

@@ -12,7 +12,7 @@ export type PlanSelected = {
 export type InfoUser= {
     name:string;
     lastName:string;
-    birthdate:string;
+    birthDay:string;
 }
 
 export type SummaryDataUser = User & PlanSelected & InfoUser;

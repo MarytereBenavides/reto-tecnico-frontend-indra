@@ -4,9 +4,10 @@ import FamilyImg from '../../assets/img/family.png';
 import { useState } from "react";
 import { User } from "@/types";
 import { useNavigate  } from "react-router-dom";
+import { useInfoUser } from "../../hooks/useInfoUser";
 function Home() {
     const navigate  = useNavigate ();
-    const [isLoading, setIsLoading] = useState(false);
+    const {getInfoUser, errorInfoUser, isInfoUserLoading, dataInfoUser, setDataInfoUser} = useInfoUser();
     const [dniError, setDniError] = useState(false);
     const [ceError, setCeError] = useState(false);
     const [cellphoneError, setCellphoneError] = useState(false);
@@ -22,7 +23,6 @@ function Home() {
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setIsLoading(true);
         setDniError(false);
         setCellphoneError(false);
         setPrivacyError(false);
@@ -59,12 +59,16 @@ function Home() {
             hasError = true;
         }
         if (hasError) {
-            setIsLoading(false);
             return;
         }
         setDataUser(data);
-        setIsLoading(false);
-        navigate('/planes');
+        getInfoUser();
+        if(!errorInfoUser){
+            setDataInfoUser({...dataInfoUser, ...dataUser});
+            navigate('/planes');
+        }else{
+            return;
+        }
     };
     return (
         <BaseLayout isHome>
@@ -129,7 +133,8 @@ function Home() {
                             <a href="/" className="home__termsAndConditions">Aplican Términos y Condiciones.</a>
                         </div>
                         <div>
-                            <Button type="submit" text="Cotiza aquí" isLoading={isLoading} className="button--black" />
+                            <Button type="submit" text="Cotiza aquí" isLoading={isInfoUserLoading} className="button--black" />
+                            {errorInfoUser && <p className="home__error">*Error en el registro</p>}
                         </div>
                     </form>
                 </div>

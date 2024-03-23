@@ -1,3 +1,10 @@
+a:link,
+a:visited,
+a:active {
+    text-decoration: none;
+    color: $color-primary;
+}
+
 .baseLayout {
     min-height: 100vh;
 
@@ -14,4 +21,48 @@
     //         position: absolute;
     //     }
     // }
+}
+
+.checkbox {
+    font-family: "BRSonoma-Regular";
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.2px;
+    text-align: left;
+    gap: 12px;
+
+    span {
+        margin-left: 9px;
+    }
+
+    @media screen and (min-width: 1272px) {
+        font-size: 12px;
+        line-height: 20px;
+        letter-spacing: 0.1px;
+    }
+
+    input[type="checkbox"]::before {
+        content: '';
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        border-radius: 4px;
+        color: $color-white;
+        background-color: $color-white;
+        border: 1px solid;
+        margin-left: -4px;
+        margin-top: -1px;
+        vertical-align: middle;
+        border-color: $color-checkbox;
+    }
+
+    input[type="checkbox"]:checked::before {
+        content: '✔';
+        font-size: 11px;
+        display: flex;
+        justify-content: center;
+        background-color: $color-checkbox;
+        border: 1px solid;
+        border-color: $color-checkbox;
+    }
 }

@@ -1,2 +1,3 @@
 import PlansOptions from "./PlansOptions";
-export { PlansOptions };
+import PlansList from "./PlansList";
+export { PlansOptions, PlansList };

@@ -1,14 +1,23 @@
 @font-face {
     font-family: "BRSonoma-Black";
+    font-weight: 900;
     src: url("/public/fonts/BRSonoma-Black.otf");
 }
 
 @font-face {
     font-family: "BRSonoma-SemiBold";
+    font-weight: 600;
     src: url("/public/fonts/BRSonoma-SemiBold.otf");
 }
 
 @font-face {
     font-family: "BRSonoma-Bold";
+    font-weight: 700;
     src: url("/public/fonts/BRSonoma-Bold.otf");
+}
+
+@font-face {
+    font-family: "BRSonoma-Regular";
+    font-weight: 400;
+    src: url("/public/fonts/BRSonoma-Regular.otf");
 }

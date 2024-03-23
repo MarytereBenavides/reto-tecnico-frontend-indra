@@ -1,0 +1,72 @@
+.footer {
+    @extend .gridBaseLayout;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    background-color: $color-primary;
+
+    &__logo {
+        grid-column-start: 1;
+        grid-column-end: span 4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @media screen and (min-width: 768px) {
+            grid-column-end: span 1;
+        }
+
+        &--mobile {
+            display: block;
+            width: 138px;
+
+
+            @media screen and (min-width: 768px) {
+                display: none;
+            }
+
+        }
+
+        svg {
+            display: none;
+
+            path {
+                fill: $color-white;
+            }
+
+            @media screen and (min-width: 768px) {
+                width: 85px;
+                display: block;
+            }
+        }
+    }
+
+    &__information {
+        grid-column-start: 1;
+        grid-column-end: span 4;
+        color: $color-quinary;
+        font-size: 14px;
+        font-family: "BRSonoma-Regular";
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        @media screen and (min-width: 768px) {
+            grid-column-start: 10;
+            grid-column-end: span 3;
+            justify-content: flex-end;
+        }
+
+    }
+
+    &__line {
+        margin: 24px 0;
+        border: 1px solid $color-sextary;
+        width: 100%;
+        grid-column-start: 1;
+        grid-column-end: span 4;
+
+        @media screen and (min-width: 768px) {
+            display: none;
+        }
+    }
+}

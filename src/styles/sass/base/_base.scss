@@ -5,6 +5,10 @@ a:active {
     color: $color-primary;
 }
 
+p {
+    margin: 0;
+}
+
 .baseLayout {
     min-height: 100vh;
 

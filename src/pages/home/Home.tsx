@@ -1,8 +1,71 @@
 
 import { BaseLayout, Button } from "../../components";
 import FamilyImg from '../../assets/img/family.png';
+import { useState } from "react";
+import { User } from "@/types";
+import { useNavigate  } from "react-router-dom";
 function Home() {
-    const isLoading = false;
+    const navigate  = useNavigate ();
+    const [isLoading, setIsLoading] = useState(false);
+    const [dniError, setDniError] = useState(false);
+    const [ceError, setCeError] = useState(false);
+    const [cellphoneError, setCellphoneError] = useState(false);
+    const [privacyError, setPrivacyError] = useState(false);
+    const [comunicationError, setComunicationError] = useState(false);
+    const [dataUser, setDataUser] = useState<User>({
+        document: '',
+        documentNumber: '',
+        cellphone: '',
+        planUser: "",
+        planType:"",
+    });
+
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setIsLoading(true);
+        setDniError(false);
+        setCellphoneError(false);
+        setPrivacyError(false);
+        setComunicationError(false);
+        const form = e.currentTarget;
+        const formData = new FormData(form);
+        let hasError = false;
+        const data = {
+            ...dataUser,
+            document: formData.get('document') as string,
+            documentNumber: formData.get('documentNumber') as string,
+            cellphone: formData.get('cellphone') as string,
+        };
+        if (data.document === '1' && data.documentNumber.toString().length !== 8) {
+            setCeError(false);
+            setDniError(true);
+            hasError = true;
+        }
+        if (data.document === '2' && data.documentNumber.toString().length !== 12) {
+            setCeError(true);
+            setDniError(false);
+            hasError = true;
+        }
+        if (data.cellphone.toString().length !== 9) {
+            setCellphoneError(true);
+            hasError = true;
+        }
+        if (!formData.get('privacy')) {
+            setPrivacyError(true);
+            hasError = true;
+        }
+        if (!formData.get('comunications')) {
+            setComunicationError(true);
+            hasError = true;
+        }
+        if (hasError) {
+            setIsLoading(false);
+            return;
+        }
+        setDataUser(data);
+        setIsLoading(false);
+        navigate('/planes');
+    };
     return (
         <BaseLayout isHome>
             <section id="home" className="home">
@@ -15,49 +78,54 @@ function Home() {
                         </div>
                         <img src={FamilyImg} alt="imagen de familia" className='home__image--mobile' />
                     </div>
-                    <form action="/planes">
+                    <form onSubmit={onSubmit}>
+                        <hr className="home__line" />
+                        <p className="home__description">Tú eliges cuánto pagar. Ingresa tus datos, cotiza y recibe nuestra asesoría. 100% online.</p>
                         <div>
-                        <select name="sort">
-                            <option value="price">Price</option>
-                            <option value="stars">Stars</option>
-                            <option value="distance">Distance</option>
-                        </select>
-                        <div>
-                            <label>
-                                <span>Apellido</span>
-                                <input type="text" name="lastname" required />
-                            </label>
-                        </div>
-                        <div>
-                            <label>
-                                <span>Email</span>
-                                <input type="email" name="email" />
-                            </label>
-                        </div>
-                        <div>
-                            <label>
-                                <span>Contraseña</span>
-                                <input type="password" name="password" />
-                            </label>
-                        </div>
+                            <select name="document">
+                                <option value="1">DNI</option>
+                                <option value="2">CE</option>
+                            </select>
+                            <div>
+                                <label>
+                                    <span>Nro. de documento</span>
+                                    <input type="text" name="documentNumber" pattern="[0-9]*"
+                                        minLength={9} maxLength={12} />
+                                </label>
+                                {dniError && <p className="home__error">*El DNI debe tener 8 dígitos</p>}
+                                {ceError && <p className="home__error">*El CE debe tener 12 dígitos</p>}
+                            </div>
+                            <div>
+                                <label>
+                                    <span>Celular</span>
+                                    <input type="tel" name="cellphone" />
+                                </label>
+                                {cellphoneError && <p className="home__error">*El celular debe tener 9 dígitos</p>}
+                            </div>
                         </div>
                         <div className="home__terms">
-                            <label className="checkbox">
-                                <input
-                                    type="checkbox"
-                                    name="privacy"
-                                    value="privacy"
-                                />
-                              <span> Acepto lo Política de Privacidad</span>
-                            </label>
-                            <label className="checkbox">
-                                <input
-                                    type="checkbox"
-                                    name="comunications"
-                                    value="comunications"
-                                />
-                             <span> Acepto la Política Comunicaciones Comerciales</span>  
-                            </label>
+                            <div>
+                                <label className="checkbox" >
+                                    <input
+                                        type="checkbox"
+                                        name="privacy"
+                                        value="privacy"
+                                    />
+                                    <span> Acepto lo Política de Privacidad</span>
+                                </label>
+                                {privacyError && <p className="home__error">*Debes aceptar la política de privacidad</p>}
+                            </div>
+                            <div>
+                                <label className="checkbox">
+                                    <input
+                                        type="checkbox"
+                                        name="comunications"
+                                        value="comunications"
+                                    />
+                                    <span> Acepto la Política Comunicaciones Comerciales</span>
+                                </label>
+                                {comunicationError && <p className="home__error">*Debes aceptar la política de comunicaciones</p>}
+                            </div>
                             <a href="/" className="home__termsAndConditions">Aplican Términos y Condiciones.</a>
                         </div>
                         <div>

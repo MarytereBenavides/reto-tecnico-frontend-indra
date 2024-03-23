@@ -53,6 +53,7 @@
             display: flex;
             flex-direction: row;
             gap: 12px;
+            margin-right: auto;
         }
 
         &--tag {
@@ -74,8 +75,9 @@
         &--title {
             font-size: 28px;
             font-family: "BRSonoma-Bold";
-            margin-top: 8px;
+            margin: 8px 0;
             line-height: 36px;
+
 
             @media screen and (min-width: 1272px) {
                 font-size: 32px;
@@ -83,6 +85,26 @@
             }
         }
     }
+
+    &__line {
+        border: 1px solid $color-line-primary;
+        width: 100%;
+        margin-top: 24px;
+        margin-bottom: 0;
+
+        @media screen and (min-width: 1272px) {
+            display: none;
+        }
+    }
+
+    &__description {
+        font-family: "BRSonoma-SemiBold";
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0.2px;
+        text-align: left;
+    }
+
 
     &__terms {
         display: flex;
@@ -102,5 +124,12 @@
         width: fit-content;
         text-align: left;
         text-decoration: underline !important;
+    }
+
+    &__error {
+        font-family: "BRSonoma-SemiBold";
+        font-size: 10px;
+        color: $color-button-secondary;
+        padding: 5px 0 4px 0;
     }
 }

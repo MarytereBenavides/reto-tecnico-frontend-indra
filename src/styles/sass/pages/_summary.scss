@@ -1,0 +1,8 @@
+.summary {
+    @extend .gridBaseLayout;
+
+    &__content {
+        grid-column-start: 2;
+        grid-column-end: span 10;
+    }
+}

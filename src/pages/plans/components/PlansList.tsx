@@ -4,16 +4,21 @@ import { plansUser } from "../../../services/infoUser";
 import { getYears } from "../../../utils";
 import { Button } from "../../../components";
 import { SummaryDataUser, Plan } from "../../../types";
+import { setDataUser } from "../../../store/features/UserStore";
+import { useDispatch } from "react-redux";
 interface PlansListProps {
     user: SummaryDataUser;
     selectedUserPlan: boolean;
 }
 function PlansList({ user, selectedUserPlan }: PlansListProps) {
+    const dispatch = useDispatch();
     const [plans, setPlans] = useState<Plan[]>([]);
     const [isInfoPlansLoading, setIsInfoPlansLoading] = useState(false);
     const [errorPlans, setErrorPlans] = useState(false);
     const navigate = useNavigate();
-    const onSelectPlan = () => {
+    const onSelectPlan = (plan:Plan) => {
+        const actualPrice = user.planUser==="Para alguien más" ? 0.95* (user.price) : user.price;
+        dispatch(setDataUser({ ...user, planType: plan.name, price: actualPrice}))
         navigate('/resumen');
     }
     const getPlans = useCallback(async () => {
@@ -46,7 +51,7 @@ function PlansList({ user, selectedUserPlan }: PlansListProps) {
                 <div key={plan.name} >
                     <h2>{plan.name}</h2>
                     <p>{plan.description}</p>
-                    <Button type="button" onClick={onSelectPlan} className="button--pink" text="Seleccionar Plan" />
+                    <Button type="button" onClick={()=>onSelectPlan(plan)} className="button--pink" text="Seleccionar Plan" />
                 </div>
             )))}
         </div>

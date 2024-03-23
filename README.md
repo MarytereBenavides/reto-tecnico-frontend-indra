@@ -26,4 +26,6 @@ Agregar funcionalidad
 
 ## Autor✒️
 * **Marytere Benavides Pezo**
-[reto-tecnico-frontend-indra.vercel.app ](https://reto-tecnico-frontend-indra.vercel.app/)
+
+## Url del reto
+[Reto técnico](https://reto-tecnico-frontend-indra.vercel.app/)

@@ -1,6 +1,7 @@
 .plans {
     @extend .gridBaseLayout;
     padding-top: 32px;
+    padding-bottom: 132px;
     min-height: calc(100vh - 68px);
 
     @media screen and (min-width: 1272px) {

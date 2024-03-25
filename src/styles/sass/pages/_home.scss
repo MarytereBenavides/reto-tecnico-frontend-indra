@@ -1,6 +1,6 @@
 .home {
     @extend .gridBaseLayout;
-    padding-bottom: 96px;
+    min-height: calc(100vh - 68px);
 
     @media screen and (min-width: 1272px) {
         padding-top: 32px;

@@ -1,5 +1,6 @@
 .summary {
     @extend .gridBaseLayout;
+    min-height: 78vh;
 
     &__content {
         grid-column-start: 2;

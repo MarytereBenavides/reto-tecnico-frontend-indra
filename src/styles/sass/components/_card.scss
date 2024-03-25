@@ -10,6 +10,19 @@
         border-color: $color-secondary;
     }
 
+    &--noHover {
+        padding: 24px 32px;
+        margin-top: 40px;
+
+        &:hover {
+            border-color: $color-white !important;
+        }
+
+        @media screen and (min-width: 1272px) {
+            margin-top: 48px;
+        }
+    }
+
     &__option {
         &--small {
             padding: 13px 21px 37px 21px;

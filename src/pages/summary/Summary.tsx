@@ -12,6 +12,7 @@ function Summary() {
             <section id="summary" className="summary">
                 <div className="summary__content">
                 <h1 className="summary_title">Resumen del seguro</h1>
+                <div className="card card--noHover">
                 <div>
                     <p>PRECIOS CALCULADOS PARA:</p>
                     <p>{user.name} {user.lastName}</p>
@@ -25,6 +26,7 @@ function Summary() {
                     <h4>Plan elegido</h4>
                     <p>{user.planType}</p>
                     <p>Costo del Plan: {`$${user.price}`} al mes</p>
+                </div>
                 </div>
                 </div>
             </section>

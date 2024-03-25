@@ -16,9 +16,11 @@ function PlansList({ user, selectedUserPlan }: PlansListProps) {
     const [isInfoPlansLoading, setIsInfoPlansLoading] = useState(false);
     const [errorPlans, setErrorPlans] = useState(false);
     const navigate = useNavigate();
-    const onSelectPlan = (plan:Plan) => {
-        const actualPrice = user.planUser==="Para alguien más" ? 0.95* (plan.price) : plan.price;
-        dispatch(setDataUser({ ...user, planType: plan.name, price: actualPrice}))
+    function actualPrice(plan: Plan) {
+        return user.planUser === "Para alguien más" ? 0.95 * (plan.price) : plan.price;
+    }
+    const onSelectPlan = (plan: Plan) => {
+        dispatch(setDataUser({ ...user, planType: plan.name, price: actualPrice(plan) }))
         navigate('/resumen');
     }
     const getPlans = useCallback(async () => {
@@ -46,12 +48,21 @@ function PlansList({ user, selectedUserPlan }: PlansListProps) {
     return (
         <div className="plans__plans">
             {errorPlans && <p className="message_error">Ha ocurrido un error</p>}
-            {isInfoPlansLoading && selectedUserPlan  && <p>Cargando...</p>}
+            {isInfoPlansLoading && selectedUserPlan && <p>Cargando...</p>}
             {!isInfoPlansLoading && selectedUserPlan && plans.length > 0 && (plansForAge.map((plan: any) => (
                 <div key={plan.name} >
                     <h2>{plan.name}</h2>
-                    <p>{plan.description}</p>
-                    <Button type="button" onClick={()=>onSelectPlan(plan)} className="button--pink" text="Seleccionar Plan" />
+                    <p>COSTO DEL PLAN</p>
+                    {user.planUser === "Para alguien más" && <p>{`$${plan.price} antes`}
+                    </p>}
+                    <p>{`$${actualPrice(plan)} al mes`}
+                    </p>
+                    <ul>
+                        {plan.description.map((plan: string) => (
+                            <li key={plan}>{plan}</li>
+                        ))}
+                    </ul>
+                    <Button type="button" onClick={() => onSelectPlan(plan)} className="button--pink" text="Seleccionar Plan" />
                 </div>
             )))}
         </div>

@@ -46,7 +46,7 @@ function PlansList({ user, selectedUserPlan }: PlansListProps) {
     return (
         <div className="plans__plans">
             {errorPlans && <p className="message_error">Ha ocurrido un error</p>}
-            {isInfoPlansLoading && <p>Cargando...</p>}
+            {isInfoPlansLoading && selectedUserPlan  && <p>Cargando...</p>}
             {!isInfoPlansLoading && selectedUserPlan && plans.length > 0 && (plansForAge.map((plan: any) => (
                 <div key={plan.name} >
                     <h2>{plan.name}</h2>

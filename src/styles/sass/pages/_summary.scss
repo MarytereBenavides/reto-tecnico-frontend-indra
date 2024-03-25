@@ -5,4 +5,13 @@
         grid-column-start: 2;
         grid-column-end: span 10;
     }
+
+    &__title {
+        font-family: "Lato";
+        font-weight: 700;
+        font-size: 40px;
+        line-height: 48px;
+        letter-spacing: -0.6px;
+        color: $color-secondary;
+    }
 }

@@ -11,7 +11,7 @@ function Summary() {
         <BaseLayout>
             <section id="summary" className="summary">
                 <div className="summary__content">
-                <h1>Resumen del seguro</h1>
+                <h1 className="summary_title">Resumen del seguro</h1>
                 <div>
                     <p>PRECIOS CALCULADOS PARA:</p>
                     <p>{user.name} {user.lastName}</p>

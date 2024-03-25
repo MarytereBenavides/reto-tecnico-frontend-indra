@@ -24,7 +24,7 @@ function FormHome({ onSubmit, dniError, ceError, cellphoneError, privacyError,co
                 <label>
                     <span>Nro. de documento</span>
                     <input type="text" name="documentNumber" pattern="[0-9]*"
-                        minLength={9} maxLength={12} />
+                        minLength={8} maxLength={12} />
                 </label>
                 {dniError && <p className="home__error">*El DNI debe tener 8 dígitos</p>}
                 {ceError && <p className="home__error">*El CE debe tener 12 dígitos</p>}

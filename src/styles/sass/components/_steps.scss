@@ -78,7 +78,7 @@
                 }
 
                 .line {
-                    width: 212px;
+                    width: 156px;
                     border-radius: 20px;
                     height: 6px;
                     background-color: $color-background-steps-line;
@@ -87,6 +87,10 @@
                         border-radius: 20px;
                         height: 6px;
                         background-color: $color-quaternary;
+                    }
+
+                    @media screen and (min-width: 375px) {
+                        width: 212px;
                     }
                 }
             }

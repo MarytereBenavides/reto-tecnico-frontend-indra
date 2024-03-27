@@ -38,6 +38,9 @@ h4 {
     letter-spacing: 0.2px;
     text-align: left;
     gap: 12px;
+    height: 100%;
+    display: block;
+    cursor: pointer;
 
     span {
         margin-left: 9px;

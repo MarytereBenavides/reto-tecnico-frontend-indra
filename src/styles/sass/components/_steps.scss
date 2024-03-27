@@ -5,7 +5,12 @@
 
     >div {
         display: grid;
-        grid-template-rows: 0.9fr 1fr;
+        grid-template-rows: 1fr;
+
+        @media screen and (min-width: 1230px) {
+            grid-template-rows: 0.9fr 1fr;
+        }
+
     }
 
     @media screen and (min-width: 1230px) {
@@ -30,12 +35,15 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: $color-background-steps;
         padding: 16px 0;
+        background-color: $color-background;
+        border-bottom: 1px solid $color-background-steps-line;
 
         @media screen and (min-width: 1230px) {
             grid-column-start: 1;
             grid-column-end: span 12;
+            border-bottom: transparent;
+            background-color: $color-background-steps;
         }
 
         .button__back__button {
@@ -47,16 +55,51 @@
         }
 
         &__steps {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 16px;
+            display: none;
 
             >div {
                 display: flex;
                 flex-direction: row;
                 align-items: center;
                 gap: 16px;
+            }
+
+            &--mobile {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+
+                p {
+                    font-family: 'Lato';
+                    font-size: 10px;
+                    line-height: 16px;
+                    font-weight: 900;
+                    letter-spacing: 0.8px;
+                }
+
+                .line {
+                    width: 212px;
+                    border-radius: 20px;
+                    height: 6px;
+                    background-color: $color-background-steps-line;
+
+                    div {
+                        border-radius: 20px;
+                        height: 6px;
+                        background-color: $color-quaternary;
+                    }
+                }
+            }
+
+            @media screen and (min-width: 1230px) {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 16px;
+
+                &--mobile {
+                    display: none;
+                }
             }
         }
 

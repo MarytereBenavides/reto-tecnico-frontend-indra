@@ -17,6 +17,13 @@ function Steps({ step }: { step: number }) {
                         <p className={`steps__bar__text ${step === 2 ? 'steps__bar__text--active' : ''}`}>Resumen</p>
                     </div>
                 </div>
+                <div className="steps__bar__steps--mobile">
+                    <p>PASO {step} DE 2</p>
+                    <div className="line" >
+                        <div style={step===1? {"width":"50%"}:{"width":"100%"}}></div>
+                    </div>
+                </div>
+
             </div>
 
             <BackButton className="steps__button" classNameButton="button__back__button--color" hasText/>

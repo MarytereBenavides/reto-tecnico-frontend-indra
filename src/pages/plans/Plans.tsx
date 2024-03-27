@@ -1,5 +1,5 @@
 
-import { BaseLayout } from "../../components";
+import { BaseLayout, Steps } from "../../components";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import { useState } from "react";
@@ -14,6 +14,7 @@ function Plans() {
 
     return (
         <BaseLayout>
+            <Steps step={1} />
             <section id="plans" className="plans">
                 <div>
                     <div className="plans__about">
@@ -27,7 +28,6 @@ function Plans() {
                 </div>
 
             </section>
-
         </BaseLayout>
     )
 }

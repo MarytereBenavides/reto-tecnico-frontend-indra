@@ -1,0 +1,108 @@
+.steps {
+    @extend .gridBaseLayout;
+    padding-top: 12px;
+    padding-bottom: 12px;
+
+    >div {
+        display: grid;
+        grid-template-rows: 0.9fr 1fr;
+    }
+
+    @media screen and (min-width: 1230px) {
+        padding-top: 14px;
+        padding-bottom: 14px;
+    }
+
+    &__button {
+        display: none;
+
+        @media screen and (min-width: 1230px) {
+            display: flex;
+            margin-top: 40px;
+        }
+
+    }
+
+    &__bar {
+        grid-column-start: 1;
+        grid-column-end: span 4;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $color-background-steps;
+        padding: 16px 0;
+
+        @media screen and (min-width: 1230px) {
+            grid-column-start: 1;
+            grid-column-end: span 12;
+        }
+
+        .button__back__button {
+            display: block;
+
+            @media screen and (min-width: 1230px) {
+                display: none;
+            }
+        }
+
+        &__steps {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 16px;
+
+            >div {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 16px;
+            }
+        }
+
+        &__circle {
+            font-family: "Lato";
+            font-size: 12px;
+            font-weight: 900;
+            line-height: 16px;
+            letter-spacing: 0.4px;
+            color: $color-tertiary;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 1px solid $color-tertiary;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &--active {
+                background-color: $color-quaternary;
+                color: $color-white;
+                border-color: $color-quaternary;
+            }
+        }
+
+        &__text {
+            margin-top: -3px;
+            color: $color-tertiary;
+            font-family: "Lato";
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+            letter-spacing: 0.2px;
+
+            &--active {
+                color: $color-secondary;
+                font-weight: 700;
+            }
+        }
+    }
+
+    .button {
+        &__back {
+            grid-area: 2 / 1 / 3 / 2;
+            grid-column-start: 2;
+            grid-column-end: span 2;
+        }
+    }
+}

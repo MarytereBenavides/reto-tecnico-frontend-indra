@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
-import { BaseLayout } from "../../components";
+import { BaseLayout, Steps } from "../../components";
 
 function Summary() {
     const user = useSelector(
@@ -9,6 +9,7 @@ function Summary() {
     console.log(user, 'userUSer')
     return (
         <BaseLayout>
+            <Steps step={2} />
             <section id="summary" className="summary">
                 <div>
                     <div className="summary__content">

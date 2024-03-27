@@ -10,6 +10,7 @@
 
     &__logo {
         grid-column-start: 1;
+        justify-self: left;
 
         svg {
             width: 65px;
@@ -28,6 +29,7 @@
         align-items: center;
         gap: 16px;
         color: $color-primary;
+        justify-self: right;
 
         @media screen and (min-width: 1230px) {
             grid-column-start: 9;
@@ -53,7 +55,15 @@
         color: $color-primary;
 
         span {
-            font-size: 18px;
+            font-size: 15px;
+
+            @media screen and (min-width: 384px) {
+                font-size: 16px;
+            }
+
+            @media screen and (min-width: 1230px) {
+                font-size: 18px;
+            }
         }
     }
 }

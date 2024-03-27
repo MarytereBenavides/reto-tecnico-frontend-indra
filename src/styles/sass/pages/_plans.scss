@@ -4,7 +4,7 @@
     padding-bottom: 132px;
     min-height: calc(100vh - 68px);
 
-    @media screen and (min-width: 1272px) {
+    @media screen and (min-width: 1230px) {
         padding-top: 40px;
         padding-bottom: 156px;
     }
@@ -15,7 +15,7 @@
         grid-column-start: 1;
         grid-column-end: span 4;
 
-        @media screen and (min-width: 1272px) {
+        @media screen and (min-width: 1230px) {
             grid-column-start: 4;
             grid-column-end: span 6;
         }
@@ -31,7 +31,7 @@
         color: $color-secondary;
         margin-bottom: 8px;
 
-        @media screen and (min-width: 1272px) {
+        @media screen and (min-width: 1230px) {
             font-size: 40px;
             line-height: 48px;
             letter-spacing: -0.6px;
@@ -47,7 +47,7 @@
         text-align: left;
         letter-spacing: 0.1px;
 
-        @media screen and (min-width: 1272px) {
+        @media screen and (min-width: 1230px) {
             text-align: center;
         }
     }
@@ -66,7 +66,7 @@
             display: none;
         }
 
-        @media screen and (min-width: 1272px) {
+        @media screen and (min-width: 1230px) {
             grid-column-start: 4;
             grid-column-end: span 6;
             flex-direction: row;
@@ -83,7 +83,7 @@
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: 1fr;
 
-        @media screen and (min-width: 1272px) {
+        @media screen and (min-width: 1230px) {
             grid-column-start: 2;
             grid-column-end: span 10;
         }

@@ -15,15 +15,16 @@ function Plans() {
     return (
         <BaseLayout>
             <section id="plans" className="plans">
-                <div className="plans__about">
-                    <h1 className="plans__title">{user.name} ¿Para quién deseas cotizar?</h1>
-                    <p className="plans__description">Selecciona la opción que se ajuste más a tus necesidades.</p>
+                <div>
+                    <div className="plans__about">
+                        <h1 className="plans__title">{user.name} ¿Para quién deseas cotizar?</h1>
+                        <p className="plans__description">Selecciona la opción que se ajuste más a tus necesidades.</p>
+                    </div>
+
+                    <PlansOptions setSelectedUserPlan={setSelectedUserPlan} />
+
+                    <PlansList user={user} selectedUserPlan={selectedUserPlan.length > 0} />
                 </div>
-
-                <PlansOptions setSelectedUserPlan={setSelectedUserPlan} />
-
-               <PlansList user={user} selectedUserPlan={selectedUserPlan.length>0} />
-
 
             </section>
 

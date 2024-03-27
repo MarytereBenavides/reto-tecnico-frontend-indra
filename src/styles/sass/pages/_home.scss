@@ -3,7 +3,7 @@
     padding-bottom: 96px;
     min-height: calc(100vh - 68px);
 
-    @media screen and (min-width: 1272px) {
+    @media screen and (min-width: 1230px) {
         padding-top: 32px;
         padding-bottom: 112px;
     }
@@ -13,7 +13,7 @@
             display: block;
             width: 136px;
 
-            @media screen and (min-width: 1272px) {
+            @media screen and (min-width: 1230px) {
                 display: none;
             }
         }
@@ -21,7 +21,7 @@
         &--web {
             display: none;
 
-            @media screen and (min-width: 1272px) {
+            @media screen and (min-width: 1230px) {
                 display: block;
                 width: 480px;
                 grid-column-start: 1;
@@ -37,7 +37,7 @@
         flex-direction: column;
         align-items: center;
 
-        @media screen and (min-width: 1272px) {
+        @media screen and (min-width: 1230px) {
             grid-column-start: 7;
             grid-column-end: span 4;
         }
@@ -55,6 +55,14 @@
             flex-direction: row;
             gap: 12px;
             margin-right: auto;
+            width: 100%;
+            justify-content: space-between;
+
+            @media screen and (min-width: 510px) {
+                img {
+                    display: none;
+                }
+            }
         }
 
         &--tag {
@@ -67,7 +75,7 @@
             line-height: 16px;
             letter-spacing: 0.4px;
 
-            @media screen and (min-width: 1272px) {
+            @media screen and (min-width: 1230px) {
                 font-size: 14px;
                 padding: 5px 9px;
             }
@@ -80,7 +88,7 @@
             line-height: 36px;
 
 
-            @media screen and (min-width: 1272px) {
+            @media screen and (min-width: 1230px) {
                 font-size: 32px;
                 line-height: 40px;
             }
@@ -93,7 +101,7 @@
         margin-top: 24px;
         margin-bottom: 0;
 
-        @media screen and (min-width: 1272px) {
+        @media screen and (min-width: 510px) {
             display: none;
         }
     }
@@ -112,7 +120,7 @@
         flex-direction: column;
         gap: 16px;
 
-        @media screen and (min-width: 1272px) {
+        @media screen and (min-width: 1230px) {
             gap: 12px;
         }
     }
@@ -132,5 +140,13 @@
         font-size: 10px;
         color: $color-button-secondary;
         padding: 5px 0 4px 0;
+    }
+
+    .boxButton {
+        align-self: center;
+
+        @media screen and (min-width: 1230px) {
+            align-self: start;
+        }
     }
 }

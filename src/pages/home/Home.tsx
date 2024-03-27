@@ -90,16 +90,18 @@ function Home() {
     return (
         <BaseLayout isHome>
             <section id="home" className="home">
-                <img src={FamilyImg} alt="imagen de familia" className='home__image--web' />
-                <div className="home__form">
-                    <div className="home__title--mobile">
-                        <div className="home_title">
-                            <p className="home__title--tag">Seguro Salud Flexible</p>
-                            <p className="home__title--title">Creado para ti y tu familia</p>
+                <div>
+                    <img src={FamilyImg} alt="imagen de familia" className='home__image--web' />
+                    <div className="home__form">
+                        <div className="home__title--mobile">
+                            <div className="home_title">
+                                <p className="home__title--tag">Seguro Salud Flexible</p>
+                                <p className="home__title--title">Creado para ti y tu familia</p>
+                            </div>
+                            <img src={FamilyImg} alt="imagen de familia" className='home__image--mobile' />
                         </div>
-                        <img src={FamilyImg} alt="imagen de familia" className='home__image--mobile' />
+                        <FormHome onSubmit={onSubmit} dniError={dniError} ceError={ceError} cellphoneError={cellphoneError} privacyError={privacyError} comunicationError={comunicationError} isInfoUserLoading={isInfoUserLoading} errorInfoUser={errorInfoUser} />
                     </div>
-                    <FormHome onSubmit={onSubmit} dniError={dniError} ceError={ceError} cellphoneError={cellphoneError} privacyError={privacyError} comunicationError={comunicationError} isInfoUserLoading={isInfoUserLoading} errorInfoUser={errorInfoUser} />
                 </div>
             </section>
         </BaseLayout>

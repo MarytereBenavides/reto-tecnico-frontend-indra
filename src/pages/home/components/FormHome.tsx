@@ -1,5 +1,5 @@
 import { Button } from "../../../components";
-
+import Arrow from "../../../assets/icons/Vector.png";
 interface FormHomeProps {
     onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
     dniError: boolean;
@@ -15,27 +15,34 @@ function FormHome({ onSubmit, dniError, ceError, cellphoneError, privacyError, c
         <form onSubmit={onSubmit}>
             <hr className="home__line" />
             <p className="home__description">Tú eliges cuánto pagar. Ingresa tus datos, cotiza y recibe nuestra asesoría. 100% online.</p>
-            <div>
-                <select name="document">
-                    <option value="1">DNI</option>
-                    <option value="2">CE</option>
-                </select>
-                <div>
-                    <label>
-                        <span>Nro. de documento</span>
-                        <input type="text" name="documentNumber" pattern="[0-9]*"
-                            minLength={8} maxLength={12} />
-                    </label>
-                    {dniError && <p className="home__error">*El DNI debe tener 8 dígitos</p>}
-                    {ceError && <p className="home__error">*El CE debe tener 12 dígitos</p>}
+            <div className="forms">
+                <div className="input__dni">
+                    <div className="input__dni__type">
+                    <img src={Arrow} alt="" />
+                    <select name="document">
+                        <option value="1">DNI</option>
+                        <option value="2">CE</option>
+                        
+                    </select>
+                    </div>
+                    <div>
+                        <label>
+                            <span>Nro. de documento</span>
+                            <input type="text"name="documentNumber" pattern="[0-9]*"
+                                minLength={8} maxLength={12} />
+                        </label>
+                    </div>
                 </div>
-                <div>
+                {dniError && <p className="home__error">*El DNI debe tener 8 dígitos</p>}
+                        {ceError && <p className="home__error">*El CE debe tener 12 dígitos</p>}
+                <div className="input__cellphone">
                     <label>
                         <span>Celular</span>
                         <input type="tel" name="cellphone" />
                     </label>
-                    {cellphoneError && <p className="home__error">*El celular debe tener 9 dígitos</p>}
+                    
                 </div>
+                {cellphoneError && <p className="home__error">*El celular debe tener 9 dígitos</p>}
             </div>
             <div className="home__terms">
                 <div>

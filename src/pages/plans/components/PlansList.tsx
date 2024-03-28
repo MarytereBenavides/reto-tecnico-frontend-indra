@@ -10,7 +10,7 @@ import parse from 'html-react-parser';
 import ImagePar from "../../../assets/icons/IcHospitalLight.png";
 import ImageImpar from "../../../assets/icons/IcHomeLight.png";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+import { Navigation, Pagination} from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';

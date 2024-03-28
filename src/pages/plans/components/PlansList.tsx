@@ -36,7 +36,9 @@ function PlansList({ user, selectedUserPlan }: PlansListProps) {
             setIsInfoPlansLoading(false);
         }
     }, []);
-
+    function isRecommended(planName: string) {
+        return planName === "Plan en Casa y Clínica";
+    }
     useEffect(() => {
         if (user.name) {
             getPlans();
@@ -52,18 +54,19 @@ function PlansList({ user, selectedUserPlan }: PlansListProps) {
             {!isInfoPlansLoading && selectedUserPlan && plans.length > 0 && (plansForAge.map((plan: any) => (
                 <div key={plan.name} className="card card--noHover" >
                     <div>
-                    <h2 className="plans__plans__title">{plan.name}</h2>
-                    <p className="plans__plans__costTitle">COSTO DEL PLAN</p>
-                    {user.planUser === "Para alguien más" && <p className="plans__plans__previewCost">{`$${plan.price} antes`}
-                    </p>}
-                    <p className="plans__plans__price">{`$${actualPrice(plan)} al mes`}
-                    </p>
-                    <hr className="plans__plans__line"/>
-                    <ul>
-                        {plan.description.map((plan: string) => (
-                            <li key={plan} className="plans__plans__description">{plan}</li>
-                        ))}
-                    </ul>
+                        {isRecommended(plan.name) && <p className="plans__plans__recommended">Plan recomendado</p>}
+                        <h2 className="plans__plans__title">{plan.name}</h2>
+                        <p className="plans__plans__costTitle">COSTO DEL PLAN</p>
+                        {user.planUser === "Para alguien más" && <p className="plans__plans__previewCost">{`$${plan.price} antes`}
+                        </p>}
+                        <p className="plans__plans__price">{`$${actualPrice(plan)} al mes`}
+                        </p>
+                        <hr className="plans__plans__line" />
+                        <ul>
+                            {plan.description.map((plan: string) => (
+                                <li key={plan} className="plans__plans__description">{plan}</li>
+                            ))}
+                        </ul>
                     </div>
 
                     <Button type="button" onClick={() => onSelectPlan(plan)} className="button--pink" text="Seleccionar Plan" />

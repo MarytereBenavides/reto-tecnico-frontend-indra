@@ -93,6 +93,20 @@
             margin-left: -16px;
         }
 
+        &__recommended {
+            font-family: "Lato";
+            font-weight: 900;
+            font-size: 12px;
+            line-height: 16px;
+            letter-spacing: 0.4px;
+            padding: 2px 8px;
+            background-color: $color-recommended;
+            border-radius: 6px;
+            width: fit-content;
+            margin-bottom: 10px;
+            margin-top: -30px;
+        }
+
         &__title {
             font-family: "Lato";
             font-weight: 900;

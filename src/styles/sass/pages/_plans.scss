@@ -175,6 +175,17 @@
             flex-direction: column;
             justify-content: space-between;
             height: 595px;
+
+            >div {
+                position: relative;
+
+                .plans__plans__image {
+                    position: absolute;
+                    right: 0;
+                    width: 56px;
+                    height: 56px;
+                }
+            }
         }
 
         button {

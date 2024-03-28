@@ -1,13 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { plansUser } from "../../../services/infoUser";
-import { getYears } from "../../../utils";
+import { getYears, Constants } from "../../../utils";
 import { Button } from "../../../components";
 import { SummaryDataUser, Plan } from "../../../types";
 import { setDataUser } from "../../../store/features/UserStore";
 import { useDispatch } from "react-redux";
-import { Constants } from "../../../utils";
 import parse from 'html-react-parser';
+import ImagePar from "../../../assets/icons/IcHospitalLight.png";
+import ImageImpar from "../../../assets/icons/IcHomeLight.png";
 interface PlansListProps {
     user: SummaryDataUser;
     selectedUserPlan: boolean;
@@ -60,10 +61,11 @@ function PlansList({ user, selectedUserPlan }: PlansListProps) {
         <div className="plans__plans">
             {errorPlans && <p className="message_error">Ha ocurrido un error</p>}
             {isInfoPlansLoading && selectedUserPlan && <p>Cargando...</p>}
-            {!isInfoPlansLoading && selectedUserPlan && plans.length > 0 && (plansForAge.map((plan: any) => (
+            {!isInfoPlansLoading && selectedUserPlan && plans.length > 0 && (plansForAge.map((plan: any, index:number) => (
                 <div key={plan.name} className="card card--noHover" >
                     <div>
                         {isRecommended(plan.name) && <p className="plans__plans__recommended">Plan recomendado</p>}
+                        <img src={index % 2 === 0 ?  ImagePar : ImageImpar} alt="plan icon" className="plans__plans__image" />
                         <h2 className="plans__plans__title">{plan.name}</h2>
                         <p className="plans__plans__costTitle">COSTO DEL PLAN</p>
                         {user.planUser === "Para alguien más" && <p className="plans__plans__previewCost">{`$${plan.price} antes`}

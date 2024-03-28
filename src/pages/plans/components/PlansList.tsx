@@ -6,6 +6,8 @@ import { Button } from "../../../components";
 import { SummaryDataUser, Plan } from "../../../types";
 import { setDataUser } from "../../../store/features/UserStore";
 import { useDispatch } from "react-redux";
+import { Constants } from "../../../utils";
+import parse from 'html-react-parser';
 interface PlansListProps {
     user: SummaryDataUser;
     selectedUserPlan: boolean;
@@ -15,6 +17,7 @@ function PlansList({ user, selectedUserPlan }: PlansListProps) {
     const [plans, setPlans] = useState<Plan[]>([]);
     const [isInfoPlansLoading, setIsInfoPlansLoading] = useState(false);
     const [errorPlans, setErrorPlans] = useState(false);
+    const { IMPORTANT_FRASES } = Constants;
     const navigate = useNavigate();
     function actualPrice(plan: Plan) {
         return user.planUser === "Para alguien más" ? 0.95 * (plan.price) : plan.price;
@@ -22,6 +25,12 @@ function PlansList({ user, selectedUserPlan }: PlansListProps) {
     const onSelectPlan = (plan: Plan) => {
         dispatch(setDataUser({ ...user, planType: plan.name, price: actualPrice(plan) }))
         navigate('/resumen');
+    }
+    function highlightPhrases(text: string) {
+        return  text.replace(
+            new RegExp(`(${IMPORTANT_FRASES.join('|')})`, 'gi'),
+            '<b>$1</b>'
+          );
     }
     const getPlans = useCallback(async () => {
         setIsInfoPlansLoading(true);
@@ -64,7 +73,7 @@ function PlansList({ user, selectedUserPlan }: PlansListProps) {
                         <hr className="plans__plans__line" />
                         <ul>
                             {plan.description.map((plan: string) => (
-                                <li key={plan} className="plans__plans__description">{plan}</li>
+                                <li key={plan} className="plans__plans__description">{parse(highlightPhrases(plan))}</li>
                             ))}
                         </ul>
                     </div>

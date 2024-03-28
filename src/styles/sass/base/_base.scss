@@ -15,9 +15,59 @@ h4 {
 
 .baseLayout {
     min-height: 100vh;
+    position: relative;
 
     &--normal {
         background-color: $color-background;
+    }
+
+    .home__background--purple {
+        display: none;
+
+        &--mobile {
+            display: block;
+            position: absolute;
+            bottom: 147px;
+            z-index: -1;
+            left: 0;
+        }
+
+        @media screen and (min-width: 1230px) {
+            display: block;
+            position: absolute;
+            bottom: 0;
+            z-index: -1;
+            left: 0;
+
+            &--mobile {
+                display: none;
+            }
+        }
+    }
+
+    .home__background--turq {
+        display: none;
+
+        &--mobile {
+            top: -1px;
+            z-index: 0;
+            display: block;
+            position: absolute;
+            right: 0;
+        }
+
+        @media screen and (min-width: 1230px) {
+            top: -1px;
+            z-index: 0;
+            display: block;
+            position: absolute;
+            right: 0;
+
+            &--mobile {
+                display: none;
+            }
+        }
+
     }
 
     // &--gradient {

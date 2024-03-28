@@ -7,6 +7,10 @@ import { useInfoUser } from "../../hooks/useInfoUser";
 import { useDispatch } from "react-redux";
 import { setDataUser } from "../../store/features/UserStore";
 import FormHome from "./components/FormHome";
+import BackgroundPurple from "../../assets/img/blur-purple.png";
+import BackgroundTurq from "../../assets/img/blur-turq.png";
+import BackgroundPurpleMobile from "../../assets/img/blur-purple-mobile.png";
+import BackgroundTurqMobile from "../../assets/img/blur-turq-mobile.png";
 function Home() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -89,6 +93,10 @@ function Home() {
     }, [isInfoUserLoading, errorInfoUser, navigate, dataInfoUser.name]);
     return (
         <BaseLayout isHome>
+            <img src={BackgroundPurple} alt="background purple" className='home__background--purple' />
+            <img src={BackgroundTurq} alt="background turq" className='home__background--turq' />
+            <img src={BackgroundPurpleMobile} alt="background purple" className='home__background--purple--mobile' />
+            <img src={BackgroundTurqMobile} alt="background turq" className='home__background--turq--mobile' />
             <section id="home" className="home">
                 <div>
                     <img src={FamilyImg} alt="imagen de familia" className='home__image--web' />

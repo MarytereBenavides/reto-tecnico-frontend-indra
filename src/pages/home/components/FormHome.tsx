@@ -1,5 +1,6 @@
 import { Button } from "../../../components";
 import Arrow from "../../../assets/icons/Vector.png";
+
 interface FormHomeProps {
     onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
     dniError: boolean;

@@ -127,3 +127,46 @@ h4 {
         border-color: $color-checkbox;
     }
 }
+
+.swiper-slide {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.swiper-button {
+    margin-top: 342px !important;
+    border: 2px solid $color-quaternary;
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 50%;
+
+    @media screen and (min-width: 780px) {
+        margin-right: 41%;
+        margin-left: 41%;
+    }
+
+    &:after {
+        font-size: 10px !important;
+        font-weight: bolder !important;
+        -webkit-text-stroke: 1px $color-quaternary;
+    }
+}
+
+.swiper-button-next {
+    @extend .swiper-button;
+    margin-right: 30%;
+}
+
+.swiper-button-prev {
+    @extend .swiper-button;
+    margin-left: 30%;
+
+    &:after {
+        margin-right: 2px;
+    }
+}
+
+.swiper-pagination {
+    bottom: 7px !important;
+    z-index: 0 !important;
+}

@@ -9,6 +9,12 @@ import { useDispatch } from "react-redux";
 import parse from 'html-react-parser';
 import ImagePar from "../../../assets/icons/IcHospitalLight.png";
 import ImageImpar from "../../../assets/icons/IcHomeLight.png";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 interface PlansListProps {
     user: SummaryDataUser;
     selectedUserPlan: boolean;
@@ -28,10 +34,10 @@ function PlansList({ user, selectedUserPlan }: PlansListProps) {
         navigate('/resumen');
     }
     function highlightPhrases(text: string) {
-        return  text.replace(
+        return text.replace(
             new RegExp(`(${IMPORTANT_FRASES.join('|')})`, 'gi'),
             '<b>$1</b>'
-          );
+        );
     }
     const getPlans = useCallback(async () => {
         setIsInfoPlansLoading(true);
@@ -61,28 +67,50 @@ function PlansList({ user, selectedUserPlan }: PlansListProps) {
         <div className="plans__plans">
             {errorPlans && <p className="message_error">Ha ocurrido un error</p>}
             {isInfoPlansLoading && selectedUserPlan && <p>Cargando...</p>}
-            {!isInfoPlansLoading && selectedUserPlan && plans.length > 0 && (plansForAge.map((plan: any, index:number) => (
-                <div key={plan.name} className="card card--noHover" >
-                    <div>
-                        {isRecommended(plan.name) && <p className="plans__plans__recommended">Plan recomendado</p>}
-                        <img src={index % 2 === 0 ?  ImagePar : ImageImpar} alt="plan icon" className="plans__plans__image" />
-                        <h2 className="plans__plans__title">{plan.name}</h2>
-                        <p className="plans__plans__costTitle">COSTO DEL PLAN</p>
-                        {user.planUser === "Para alguien más" && <p className="plans__plans__previewCost">{`$${plan.price} antes`}
-                        </p>}
-                        <p className="plans__plans__price">{`$${actualPrice(plan)} al mes`}
-                        </p>
-                        <hr className="plans__plans__line" />
-                        <ul>
-                            {plan.description.map((plan: string) => (
-                                <li key={plan} className="plans__plans__description">{parse(highlightPhrases(plan))}</li>
-                            ))}
-                        </ul>
-                    </div>
+            <Swiper
+                modules={[Navigation, Pagination]}
+                spaceBetween={26}
+                slidesPerView={1}
+                breakpoints={{
+                    700: {
+                        slidesPerView: 2,
+                        },
+                    1024: {
+                      slidesPerView: 3,
+                    },
+                  }}
+                navigation
+                pagination={{
+                    type: 'fraction',
+                  }}
+            >
+                <>
+                    {!isInfoPlansLoading && selectedUserPlan && plans.length > 0 && (plansForAge.map((plan: any, index: number) => (
+                        <SwiperSlide>
+                            <div key={plan.name} className="card card--noHover" >
+                                <div>
+                                    {isRecommended(plan.name) && <p className="plans__plans__recommended">Plan recomendado</p>}
+                                    <img src={index % 2 === 0 ? ImagePar : ImageImpar} alt="plan icon" className="plans__plans__image" />
+                                    <h2 className="plans__plans__title">{plan.name}</h2>
+                                    <p className="plans__plans__costTitle">COSTO DEL PLAN</p>
+                                    {user.planUser === "Para alguien más" && <p className="plans__plans__previewCost">{`$${plan.price} antes`}
+                                    </p>}
+                                    <p className="plans__plans__price">{`$${actualPrice(plan)} al mes`}
+                                    </p>
+                                    <hr className="plans__plans__line" />
+                                    <ul>
+                                        {plan.description.map((plan: string) => (
+                                            <li key={plan} className="plans__plans__description">{parse(highlightPhrases(plan))}</li>
+                                        ))}
+                                    </ul>
+                                </div>
 
-                    <Button type="button" onClick={() => onSelectPlan(plan)} className="button--pink" text="Seleccionar Plan" />
-                </div>
-            )))}
+                                <Button type="button" onClick={() => onSelectPlan(plan)} className="button--pink" text="Seleccionar Plan" />
+                            </div>
+                        </SwiperSlide>
+                    )))}
+                </>
+            </Swiper>
         </div>
     );
 }

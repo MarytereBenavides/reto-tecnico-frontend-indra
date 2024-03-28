@@ -35,7 +35,7 @@ h4 {
         @media screen and (min-width: 1230px) {
             display: block;
             position: absolute;
-            bottom: 0;
+            bottom: 100px;
             z-index: -1;
             left: 0;
 
@@ -57,7 +57,7 @@ h4 {
         }
 
         @media screen and (min-width: 1230px) {
-            top: -1px;
+            top: 0;
             z-index: -1;
             display: block;
             position: absolute;

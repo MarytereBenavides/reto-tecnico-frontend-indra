@@ -50,7 +50,7 @@ h4 {
 
         &--mobile {
             top: -1px;
-            z-index: 0;
+            z-index: -1;
             display: block;
             position: absolute;
             right: 0;
@@ -58,7 +58,7 @@ h4 {
 
         @media screen and (min-width: 1230px) {
             top: -1px;
-            z-index: 0;
+            z-index: -1;
             display: block;
             position: absolute;
             right: 0;
